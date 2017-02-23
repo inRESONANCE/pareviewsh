@@ -26,6 +26,9 @@ PAREVIEWSH_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 # check if the first argument is valid directory.
 if [ -d $1 ]; then
  cd $1
+else
+  echo "Directory does not exist"
+  exit 1
 fi
 
 # Get module/theme name.
@@ -50,7 +53,7 @@ fi
 # README.txt present?
 function check_readme {
   if [ ! -e README.txt ] && [ ! -e README.md ] ; then
-    echo "README.md or README.txt is missing, see the <a href=\"https://www.drupal.org/node/447604\">guidelines for in-project documentation."
+    echo "README.md or README.txt is missing, see the guidelines for in-project documentation."
     exit 1;
   fi
 
@@ -294,3 +297,22 @@ function check_tests {
     echo "No automated test cases were found, did you consider writing Simpletests or PHPUnit tests? This is not a requirement but encouraged for professional software development."
   fi
 }
+
+check_readme
+check_license
+check_translations
+check_os_files
+check_backup_files
+check_info_files
+check_php_tags
+check_module_functions
+check_lineendings
+check_old_cvs
+check_php_parse
+check_file_start
+check_drupalcs
+check_eslint
+check_drupal_practice
+check_drupal_secure
+check_codespell
+check_tests
